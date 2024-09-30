@@ -23,7 +23,7 @@ namespace hsqlite {
     }
 
     database(std::string_view filename, int flags, std::string_view zfs = "") {
-      last_error = static_cast<error_code>(sqlite3_open_v2(filename.begin(), &db, flags, zfs.begin()));
+      last_error = static_cast<error_code>(sqlite3_open_v2(filename.begin(), &db, flags, zfs == "" ? nullptr : zfs.begin()));
     }
 
     database(database&) = delete;
