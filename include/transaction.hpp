@@ -8,7 +8,9 @@ namespace hsqlite {
   private:
     database& db;
   public:
-    transaction(database& db) : db(db) { }
+    transaction(database& db) : db(db) {
+      db.exec("BEGIN TRANSACTION;");
+    }
 
     error_code rollback() {
       return db.exec("ROLLBACK;");
