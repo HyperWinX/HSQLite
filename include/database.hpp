@@ -54,5 +54,9 @@ namespace hsqlite {
     error_code exec(std::string_view query, int(*callback)(void*, int, char**, char**) = nullptr, void* v = nullptr, char** errmsg = nullptr) {
       return static_cast<error_code>(sqlite3_exec(db, query.begin(), callback, v, errmsg));
     }
+
+    ~database() {
+      sqlite3_close(db);
+    }
   };
 }
